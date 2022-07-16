@@ -23,6 +23,8 @@
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
 &lt { quick_tap_ms = <200>; };
 
+ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C) // €
+
 / {
     combos {
         compatible = "zmk,combos";
@@ -82,7 +84,7 @@
         other_layer {
             label = "Other";
             bindings = <
-                &kp LPAR   &trans     &trans      &trans          &kp RPAR     &trans           &bt BT_CLR     &trans       &trans       &sv_ao
+                &kp LPAR   &trans     &euro_sign  &trans          &kp RPAR     &trans           &bt BT_CLR     &trans       &trans       &sv_ao
                 &trans     &trans     &trans      &trans          &trans       &trans           &trans         &trans       &sv_oe       &sv_ae
                 &trans     &trans     &trans      &trans          &trans       &bt BT_SEL 0     &bt BT_SEL 1   &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
                                                   &trans          &trans       &trans           &trans
