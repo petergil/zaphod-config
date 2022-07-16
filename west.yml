@@ -4,10 +4,13 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: petejohanson
       url-base: https://github.com/petejohanson
+    - name: urob
+      url-base: https://github.com/urob
   projects:
+    # https://github.com/zmkfirmware/zmk/pull/1114
     - name: zmk
-      remote: zmkfirmware
-      revision: main
+      remote: urob
+      revision: masked-mods
       import: app/west.yml
   self:
     path: config
