@@ -20,6 +20,13 @@ static struct zaphod_bongo_cat_widget bongo_widget;
 
 #endif
 
+#if IS_ENABLED(CONFIG_ZAPHOD_NEKO)
+#include "zaphod_neko_widget.h"
+
+static struct zaphod_neko_widget bongo_widget;
+
+#endif
+
 #if IS_ENABLED(CONFIG_ZMK_WIDGET_BATTERY_STATUS)
 static struct zmk_widget_battery_status battery_status_widget;
 #endif
@@ -40,7 +47,7 @@ lv_style_t global_style;
 
 lv_obj_t *zmk_display_status_screen() {
     lv_obj_t *screen;
-#if !IS_ENABLED(CONFIG_ZAPHOD_BONGO_CAT)
+#if !IS_ENABLED(CONFIG_ZAPHOD_NEKO)
     lv_obj_t *dont_label;
     lv_obj_t *panic_label;
 #endif
@@ -73,15 +80,15 @@ lv_obj_t *zmk_display_status_screen() {
     lv_cont_set_fit(center_frame, LV_FIT_TIGHT);
     lv_cont_set_layout(center_frame, LV_LAYOUT_CENTER);
 
-#if IS_ENABLED(CONFIG_ZAPHOD_BONGO_CAT)
-    zaphod_bongo_cat_widget_init(&bongo_widget, center_frame);
+#if IS_ENABLED(CONFIG_ZAPHOD_NEKO)
+    zaphod_neko_widget_init(&bongo_widget, center_frame);
 #else
     dont_label = lv_label_create(center_frame, NULL);
     lv_label_set_text(dont_label, "Don't");
 
     panic_label = lv_label_create(center_frame, NULL);
     lv_label_set_text(panic_label, "Panic");
-#endif // IS_ENABLED(CONFIG_ZAPHOD_BONGO_CAT)
+#endif // IS_ENABLED(CONFIG_ZAPHOD_NEKO)
 
 #if IS_ENABLED(CONFIG_ZMK_WIDGET_LAYER_STATUS)
     zmk_widget_layer_status_init(&layer_status_widget, screen);
