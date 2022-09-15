@@ -1,4 +1,4 @@
-/* 
+/*
  * helper.h
  *
  * Convenience macros simplifying ZMK's keymap configuration.
@@ -44,7 +44,7 @@
 
 /* ZMK_COMBOS */
 
-#define ALL -1
+#define ALL 0xff
 #if !defined COMBO_TERM
     #define COMBO_TERM 30
 #endif
@@ -62,9 +62,26 @@
         }; \
     };
 
-/* ZMK_CONDITIONAL_LAYERS */
+#if !defined COMBO_HOOK
+    #define COMBO_HOOK
+#endif
+#define ZMK_COMBO_ADV(name, combo_bindings, keypos, combo_layers, combo_timeout) \
+    / { \
+        combos { \
+            compatible = "zmk,combos"; \
+            combo_ ## name { \
+                timeout-ms = <combo_timeout>; \
+                bindings = <combo_bindings>; \
+                key-positions = <keypos>; \
+                layers = <combo_layers>; \
+                COMBO_HOOK \
+            }; \
+        }; \
+    };
 
-#define ZMK_CONDITIONAL_LAYERS(if_layers, then_layer) \
+/* ZMK_CONDITIONAL_LAYER */
+
+#define ZMK_CONDITIONAL_LAYER(if_layers, then_layer) \
     / { \
         conditional_layers { \
             compatible = "zmk,conditional-layers"; \
@@ -79,8 +96,8 @@
 
 #if !defined OS_UNICODE_LEAD
     #if HOST_OS == 2
-        #define OS_UNICODE_LEAD &macro_press &kp LALT      // macOS
-    #elif HOST_OS == 1 
+        #define OS_UNICODE_LEAD &macro_press &kp LALT      // macOS/Windows-Alt-Codes
+    #elif HOST_OS == 1
         #define OS_UNICODE_LEAD &macro_tap &kp LS(LC(U))   // Linux
     #else
         #define OS_UNICODE_LEAD &macro_tap &kp RALT &kp U  // Windows + WinCompose (default)
@@ -88,8 +105,8 @@
 #endif
 #if !defined OS_UNICODE_TRAIL
     #if HOST_OS == 2
-        #define OS_UNICODE_TRAIL &macro_release &kp LALT  // macOS
-    #elif HOST_OS == 1 
+        #define OS_UNICODE_TRAIL &macro_release &kp LALT  // macOS/Windows-Alt-Codes
+    #elif HOST_OS == 1
         #define OS_UNICODE_TRAIL &macro_tap &kp SPACE     // Linux
     #else
         #define OS_UNICODE_TRAIL &macro_tap &kp RET       // Windows + WinCompose (default)
@@ -103,7 +120,7 @@
                 compatible = "zmk,behavior-macro"; \
                 label = ZMK_HELPER_STRINGIFY(UC_MACRO_ ## name); \
                 wait-ms = <0>; \
-                tap-ms = <1>; \
+                tap-ms = <0>; \
                 #binding-cells = <0>; \
                 bindings = <OS_UNICODE_LEAD>, <&macro_tap unicode_bindings>, <OS_UNICODE_TRAIL>; \
             }; \
@@ -119,7 +136,7 @@
                 #binding-cells = <0>; \
                 bindings = <uc_binding>, <shifted_uc_binding>; \
                 mods = <(MOD_LSFT|MOD_RSFT)>; \
-                masked_mods = <(MOD_LSFT|MOD_RSFT)>; \
+                masked-mods = <(MOD_LSFT|MOD_RSFT)>; \
             }; \
         }; \
     };

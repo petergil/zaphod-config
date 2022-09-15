@@ -7,10 +7,10 @@ manifest:
     - name: urob
       url-base: https://github.com/urob
   projects:
-    # https://github.com/zmkfirmware/zmk/pull/1114
+    # https://github.com/zmkfirmware/zmk/pull/1412
     - name: zmk
       remote: urob
-      revision: masked-mods
+      revision: fix-mod-morph
       import: app/west.yml
   self:
     path: config
