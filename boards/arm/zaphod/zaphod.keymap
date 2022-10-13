@@ -50,6 +50,8 @@ ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C) // €
             tapping_term_ms = <200>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
+            // a quick tap+hold holds the tap key
+            quick_tap_ms = <200>;
         };
     };
 
