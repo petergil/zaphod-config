@@ -92,9 +92,9 @@ ZMK_UNICODE_SINGLE(lighting  , N2, N6, A, N1)    // ⚡
         nav_layer {
             label = "Nav";
             bindings = <
-                &trans     &trans     &trans      &trans          &trans       &trans           &trans         &trans      &trans     &trans
-                &trans     &trans     &trans      &trans          &trans       &kp LARW         &kp DARW       &kp UARW    &kp RARW   &kp SEMI
                 &trans     &trans     &trans      &trans          &trans       &kp HOME         &kp PG_DN      &kp PG_UP   &kp END    &trans
+                &trans     &trans     &trans      &trans          &trans       &kp LARW         &kp DARW       &kp UARW    &kp RARW   &kp SEMI
+                &trans     &trans     &trans      &trans          &trans       &trans           &trans         &trans      &trans     &trans
                                                   &trans          &trans       &kp ESC          &kp DEL
             >;
         };
