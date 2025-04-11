@@ -45,7 +45,7 @@ ZMK_UNICODE_SINGLE(CCCP      , N2, N6, N2, D)    // ☭
 ZMK_UNICODE_SINGLE(lighting  , N2, N6, A, N1)    // ⚡
 
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
-&lt { quick_tap_ms = <200>; };
+&lt { quick-tap-ms = <200>; };
 
 / {
     combos {
@@ -73,7 +73,7 @@ ZMK_UNICODE_SINGLE(lighting  , N2, N6, A, N1)    // ⚡
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
             // a quick tap+hold holds the tap key
-            quick_tap_ms = <200>;
+            quick-tap-ms = <200>;
         };
     };
 
