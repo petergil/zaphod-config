@@ -10,11 +10,11 @@ jobs:
     name: Build Test
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: config/
       - name: Cache west modules
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         env:
           cache-name: cache-zephyr-modules
         with:
@@ -52,7 +52,7 @@ jobs:
           cp build/zaphod_lite_xiao/zephyr/zmk.uf2 seeeduino_xiao_zaphod_lite.uf2
           cp build/zaphod_lite_xiao_ble/zephyr/zmk.uf2 seeeduino_xiao_ble_zaphod_lite.uf2
       - name: Archive
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: firmware
           path: '*.uf2'
