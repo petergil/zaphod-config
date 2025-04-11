@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cd /__w/
 west init -l zaphod-config/
@@ -8,6 +8,3 @@ west list
 west build -s zmk/app -b zaphod -d build/zaphod -- -DZMK_CONFIG=/__w/zaphod-config
 #west build -s zmk/app -b seeeduino_xiao -d build/zaphod_lite_xiao -- -DZMK_CONFIG="/__w/zaphod-config" -DSHIELD=zaphod_lite
 #west build -s zmk/app -b seeeduino_xiao_ble -d build/zaphod_lite_xiao_ble -- -DZMK_CONFIG="/__w/zaphod-config" -DSHIELD=zaphod_lite
-cp build/zaphod/zephyr/zmk.uf2 artifacts/zaphod.uf2
-#cp build/zaphod_lite_xiao/zephyr/zmk.uf2 artifacts/seeeduino_xiao_zaphod_lite.uf2
-#cp build/zaphod_lite_xiao_ble/zephyr/zmk.uf2 artifacts/seeeduino_xiao_ble_zaphod_lite.uf2

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+cd /__w/
+
+cp build/zaphod/zephyr/zmk.uf2 artifacts/zaphod.uf2
+#cp build/zaphod_lite_xiao/zephyr/zmk.uf2 artifacts/seeeduino_xiao_zaphod_lite.uf2
+#cp build/zaphod_lite_xiao_ble/zephyr/zmk.uf2 artifacts/seeeduino_xiao_ble_zaphod_lite.uf2

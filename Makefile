@@ -6,7 +6,8 @@ ZAPHOD_CONTAINER=zaphod-build
 ZMK_IMAGE=zmkfirmware/zmk-build-arm:stable
 
 build:
-	${DOCKER} exec ${ZAPHOD_CONTAINER} /__w/zaphod-config/build.sh
+	${DOCKER} exec ${ZAPHOD_CONTAINER} /__w/zaphod-config/tools/build
+	${DOCKER} exec ${ZAPHOD_CONTAINER} /__w/zaphod-config/tools/extract-artifact
 
 clean: stop-container
 	${DOCKER} rm ${ZAPHOD_CONTAINER}
