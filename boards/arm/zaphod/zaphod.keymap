@@ -108,7 +108,7 @@ ZMK_UNICODE_SINGLE(lighting  , N2, N6, A, N1)    // ⚡
         other_layer {
             label = "Other";
             bindings = <
-                &kp LPAR   &msc SCRL_DOWN &euro_sign  &msc SCRL_DOWN  &kp RPAR     &trans           &trans        &trans       &trans     &sv_ao
+                &kp LPAR   &msc SCRL_DOWN &euro_sign  &msc SCRL_UP    &kp RPAR     &trans           &trans        &trans       &trans     &sv_ao
                 &trans     &trans         &trans      &trans          &trans       &trans           &trans        &trans       &sv_oe     &sv_ae
                 &trans     &trans         &trans      &trans          &trans       &checkmark       &cross        &trans       &trans     &trans
                                                       &trans          &trans       &kp ESC          &kp DEL
