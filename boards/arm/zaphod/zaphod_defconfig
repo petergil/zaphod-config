@@ -36,3 +36,6 @@ CONFIG_ZMK_WIDGET_OUTPUT_STATUS=y
 
 # Apparently in newer ZMK I need to invert stuff?
 CONFIG_ZMK_DISPLAY_INVERT=y
+
+# Mouse support
+CONFIG_ZMK_POINTING=y
