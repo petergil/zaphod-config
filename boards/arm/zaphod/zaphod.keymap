@@ -125,7 +125,7 @@ ZMK_UNICODE_SINGLE(lighting  , N2, N6, A, N1)    // ⚡
                 &kp LBRC     &kp LS(N7)  &kp LS(N8)  &kp LS(N9) &kp RBRC        &trans &trans   &trans    &trans    &trans
                 &kp COLON    &kp LS(N4)  &kp LS(N5)  &kp LS(N6) &kp PLUS        &trans &trans   &trans    &trans    &trans
                 &kp TILDE    &kp LS(N1)  &kp LS(N2)  &kp LS(N3) &kp LS(BSLH)    &trans &trans   &trans    &trans    &trans
-                                                   &kp LS(N0) &kp UNDER         &trans &trans
+                                                     &kp LS(N0) &kp UNDER       &trans &trans
             >;
         };
 
