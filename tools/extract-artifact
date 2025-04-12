@@ -1,7 +1,18 @@
 #!/usr/bin/env bash
 
-cd /__w/
+set -e
 
-cp build/zaphod/zephyr/zmk.uf2 artifacts/zaphod.uf2
-#cp build/zaphod_lite_xiao/zephyr/zmk.uf2 artifacts/seeeduino_xiao_zaphod_lite.uf2
-#cp build/zaphod_lite_xiao_ble/zephyr/zmk.uf2 artifacts/seeeduino_xiao_ble_zaphod_lite.uf2
+cd /__w/zaphod-config
+
+REVNAME=$(git describe --abbrev=8 --dirty --always)
+DATE=$(date --iso-8601=date)
+
+ARTIFACTBASE="../artifacts/zaphod-${DATE}-${REVNAME}"
+if [[ $(git status --porcelain | wc -l) -gt 0 ]];
+then
+    CHANGESET=$(git diff -p --stat | md5sum | sed -e 's/  -//'  | tr -d '\n')
+    ARTIFACTBASE="${ARTIFACTBASE}-${CHANGESET}"
+    git diff -p --stat --output="${ARTIFACTBASE}.diff"
+fi
+
+cp ../build/zaphod/zephyr/zmk.uf2 "${ARTIFACTBASE}.uf2"
