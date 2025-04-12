@@ -2,17 +2,27 @@
 ZAPHOD_WORK_DIR="${HOME}/programming/zaphod"
 
 DOCKER=podman
+DEXEC=${DOCKER} exec ${ZAPHOD_CONTAINER}
 ZAPHOD_CONTAINER=zaphod-build
 ZMK_IMAGE=zmkfirmware/zmk-build-arm:stable
 
-build:
-	${DOCKER} exec ${ZAPHOD_CONTAINER} /__w/zaphod-config/tools/build
-	${DOCKER} exec ${ZAPHOD_CONTAINER} /__w/zaphod-config/tools/extract-artifact
+.SILENT:
+
+build: start-container container-build container-artifact
 
 clean: stop-container
 	${DOCKER} rm ${ZAPHOD_CONTAINER}
 
-init:
+container-artifact:
+	${DEXEC} /__w/zaphod-config/tools/extract-artifact
+
+container-build:
+	${DEXEC} /__w/zaphod-config/tools/build
+
+container-init-env: start-container
+	${DEXEC} /__w/zaphod-config/tools/init-env
+
+create-container:
 	${DOCKER} create --name ${ZAPHOD_CONTAINER} \
 		--workdir /__w  \
 		-v "${ZAPHOD_WORK_DIR}/zaphod-config/":"/__w/zaphod-config":ro \
@@ -20,13 +30,15 @@ init:
 		--entrypoint "tail" \
 		${ZMK_IMAGE} "-f" "/dev/null"
 
+init: create-container container-init-env
+
 pull:
 	${DOCKER} pull ${ZMK_IMAGE}
 
-prep: init start-container
+prep: init 
 
 start-container:
 	${DOCKER} start ${ZAPHOD_CONTAINER}
 
 stop-container:
-	${DOCKER} stop ${ZAPHOD_CONTAINER}
+	${DOCKER} stop -t=1 ${ZAPHOD_CONTAINER}

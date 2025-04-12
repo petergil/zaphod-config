@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
 cd /__w/
-west init -l zaphod-config/
-west update
-west zephyr-export
-west list
+
 west build -s zmk/app -b zaphod -d build/zaphod -- -DZMK_CONFIG=/__w/zaphod-config
 #west build -s zmk/app -b seeeduino_xiao -d build/zaphod_lite_xiao -- -DZMK_CONFIG="/__w/zaphod-config" -DSHIELD=zaphod_lite
 #west build -s zmk/app -b seeeduino_xiao_ble -d build/zaphod_lite_xiao_ble -- -DZMK_CONFIG="/__w/zaphod-config" -DSHIELD=zaphod_lite
