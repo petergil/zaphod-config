@@ -7,12 +7,15 @@ cd /__w/zaphod-config
 REVNAME=$(git describe --abbrev=8 --dirty --always)
 DATE=$(date --iso-8601=date)
 
-ARTIFACTBASE="../artifacts/zaphod-${DATE}-${REVNAME}"
+ARTIFACTDIR="../artifacts"
+ARTIFACTBASE="zaphod-${DATE}-${REVNAME}"
 if [[ $(git status --porcelain | wc -l) -gt 0 ]];
 then
     CHANGESET=$(git diff -p --stat | md5sum | sed -e 's/  -//'  | tr -d '\n')
     ARTIFACTBASE="${ARTIFACTBASE}-${CHANGESET}"
-    git diff -p --stat --output="${ARTIFACTBASE}.diff"
+    git diff -p --stat --output="${ARTIFACTDIR}/${ARTIFACTBASE}.diff"
 fi
 
-cp ../build/zaphod/zephyr/zmk.uf2 "${ARTIFACTBASE}.uf2"
+cp ../build/zaphod/zephyr/zmk.uf2 "${ARTIFACTDIR}/${ARTIFACTBASE}.uf2"
+echo
+echo "Artifact name is: ${ARTIFACTBASE}.uf2"
