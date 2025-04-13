@@ -32,6 +32,11 @@ create-container:
 
 init: create-container container-init-env
 
+lint: shellcheck
+
+shellcheck:
+	shellcheck -a tools/*
+
 pull:
 	${DOCKER} pull ${ZMK_IMAGE}
 
