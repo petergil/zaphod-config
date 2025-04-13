@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 cd /__w/
 
 west build -s zmk/app -b zaphod -d build/zaphod -- -DZMK_CONFIG=/__w/zaphod-config
